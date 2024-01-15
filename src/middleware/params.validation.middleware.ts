@@ -1,9 +1,9 @@
 // validation.middleware.ts
 
-import { Request, Response, NextFunction } from 'express';
-import { plainToInstance } from 'class-transformer';
-import { validate } from 'class-validator';
-import { BadRequestResponseWithError } from '../helpers/response.helper';
+import { Request, Response, NextFunction } from "express";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
+import { BadRequestResponseWithError } from "../helpers/response.helper";
 
 export function validateParamsDTO(dtoClass: any) {
   return (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +14,7 @@ export function validateParamsDTO(dtoClass: any) {
         const errorMessage = errors.map((error: any) => {
           return {
             message: `${error.property} has wrong value: ${error.value}`,
-            constraints: Object.values(error.constraints).join(', '),
+            constraints: Object.values(error.constraints).join(", "),
           };
         });
 

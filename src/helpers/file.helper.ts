@@ -1,13 +1,17 @@
-import fs from 'fs';
+import fs from "fs";
 
-export async function createJSONFile(path: string, fileName: string, dataObject: {}) {
+export async function createJSONFile(
+  path: string,
+  fileName: string,
+  dataObject: object,
+) {
   // Write to a file asynchronously
   fs.writeFile(`${path}${fileName}.json`, JSON.stringify(dataObject), (err) => {
     if (err) {
-      console.log('Unable to create file', err.message);
+      console.log("Unable to create file", err.message);
       return;
     }
-    console.log('JSON string has been written to the file.');
+    console.log("JSON string has been written to the file.");
     return true;
   });
 }

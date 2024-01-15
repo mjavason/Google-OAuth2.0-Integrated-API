@@ -1,12 +1,12 @@
-import { Response } from 'express';
-import { MESSAGES } from '../constants';
+import { Response } from "express";
+import { MESSAGES } from "../constants";
 
 enum StatusCode {
-  SUCCESS = '10000',
-  FAILURE = '10001',
-  RETRY = '10002',
-  INVALID_ACCESS_TOKEN = '10003',
-  WE_MOVE = '10004',
+  SUCCESS = "10000",
+  FAILURE = "10001",
+  RETRY = "10002",
+  INVALID_ACCESS_TOKEN = "10003",
+  WE_MOVE = "10004",
 }
 
 enum ResponseStatus {
@@ -20,7 +20,7 @@ enum ResponseStatus {
 
 export function AuthFailureResponse(
   res: Response,
-  message = MESSAGES.AUTH_FAILURE
+  message = MESSAGES.AUTH_FAILURE,
 ): Response {
   return res
     .status(ResponseStatus.UNAUTHORIZED)
@@ -29,7 +29,7 @@ export function AuthFailureResponse(
 
 export function NotFoundResponse(
   res: Response,
-  message = MESSAGES.NOT_FOUND
+  message = MESSAGES.NOT_FOUND,
 ): Response {
   return res
     .status(ResponseStatus.NOT_FOUND)
@@ -38,7 +38,7 @@ export function NotFoundResponse(
 
 export function ForbiddenResponse(
   res: Response,
-  message = MESSAGES.FORBIDDEN
+  message = MESSAGES.FORBIDDEN,
 ): Response {
   return res
     .status(ResponseStatus.FORBIDDEN)
@@ -47,7 +47,7 @@ export function ForbiddenResponse(
 
 export function BadRequestResponse(
   res: Response,
-  message = MESSAGES.BAD_PARAMETERS
+  message = MESSAGES.BAD_PARAMETERS,
 ): Response {
   return res
     .status(ResponseStatus.BAD_REQUEST)
@@ -57,7 +57,7 @@ export function BadRequestResponse(
 export function BadRequestResponseWithError(
   res: Response,
   error: object,
-  message = MESSAGES.BAD_PARAMETERS
+  message = MESSAGES.BAD_PARAMETERS,
 ): Response {
   return res
     .status(ResponseStatus.BAD_REQUEST)
@@ -67,7 +67,7 @@ export function BadRequestResponseWithError(
 export function ForbiddenButWeMoveResponse<T>(
   res: Response,
   data: T,
-  message = MESSAGES.BAD_PARAMETERS
+  message = MESSAGES.BAD_PARAMETERS,
 ): Response {
   return res
     .status(ResponseStatus.FORBIDDEN)
@@ -76,7 +76,7 @@ export function ForbiddenButWeMoveResponse<T>(
 
 export function InternalErrorResponse(
   res: Response,
-  message = MESSAGES.INTERNAL_ERROR
+  message = MESSAGES.INTERNAL_ERROR,
 ): Response {
   return res
     .status(ResponseStatus.INTERNAL_ERROR)
@@ -85,7 +85,7 @@ export function InternalErrorResponse(
 
 export function SuccessMsgResponse(
   res: Response,
-  message = MESSAGES.FETCHED
+  message = MESSAGES.FETCHED,
 ): Response {
   return res
     .status(ResponseStatus.SUCCESS)
@@ -94,7 +94,7 @@ export function SuccessMsgResponse(
 
 export function FailureMsgResponse(
   res: Response,
-  message = MESSAGES.ERROR
+  message = MESSAGES.ERROR,
 ): Response {
   return res
     .status(ResponseStatus.SUCCESS)
@@ -104,7 +104,7 @@ export function FailureMsgResponse(
 export function SuccessResponse<T>(
   res: Response,
   data: T,
-  message = MESSAGES.SUCCESSFUL
+  message = MESSAGES.SUCCESSFUL,
 ): Response {
   return res
     .status(ResponseStatus.SUCCESS)
@@ -113,22 +113,20 @@ export function SuccessResponse<T>(
 
 export function AccessTokenErrorResponse(
   res: Response,
-  message = MESSAGES.ACCESS_TOKEN_ERROR_RESPONSE
+  message = MESSAGES.ACCESS_TOKEN_ERROR_RESPONSE,
 ): Response {
-  return res
-    .status(ResponseStatus.UNAUTHORIZED)
-    .send({
-      success: false,
-      statusCode: StatusCode.INVALID_ACCESS_TOKEN,
-      message,
-    });
+  return res.status(ResponseStatus.UNAUTHORIZED).send({
+    success: false,
+    statusCode: StatusCode.INVALID_ACCESS_TOKEN,
+    message,
+  });
 }
 
 export function TokenRefreshResponse(
   res: Response,
   message = MESSAGES.FETCHED,
   accessToken: string,
-  refreshToken: string
+  refreshToken: string,
 ): Response {
   return res.status(ResponseStatus.SUCCESS).json({
     success: true,
